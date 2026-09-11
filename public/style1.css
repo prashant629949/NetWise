@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f2f4f7;
+    overflow-x: hidden;
+    font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.box {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box1 {
+    width: 100%;
+    max-width: 980px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.box2 {
+    flex: 1;
+    max-width: 500px;
+}
+
+.minibox2 {
+    font-size: clamp(1.2rem, 4vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1.4;
+    margin-top: 20px;
+}
+
+.box3 {
+    background-color: white;
+    min-height: 360px;
+    width: 100%;
+    max-width: 396px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.f1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.f1 input {
+    width: 100%;
+    height: 52px;
+    border-radius: 6px;
+    border: 1px solid rgb(233, 230, 230);
+    background-color: white;
+    padding: 0 16px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.f1 input::placeholder {
+    font-weight: 500;
+    font-size: 1rem;
+    padding-left: 0;
+}
+
+.log {
+    width: 100%;
+    height: 52px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background-color: #0866ff;
+    border: 1px solid #0866ff;
+    color: white;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+}
+
+.log:hover {
+    background-color: #1877f2;
+}
+
+.fp {
+    color: #0866ff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    margin: 16px 0;
+}
+
+.fp:hover {
+    text-decoration: underline;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #DADDE1;
+    margin: 20px 0;
+}
+
+.cna {
+    background-color: #42b72a;
+    border: 1px solid #42b72a;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%;
+    height: 52px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.cna:hover {
+    background-color: #2b9217;
+}
+
+.page {
+    text-align: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page a {
+    font-weight: 600;
+    color: #65676b;
+    text-decoration: none;
+}
+
+.page a:hover {
+    text-decoration: underline;
+}
+
+.foot {
+    background-color: white;
+    width: 100%;
+    padding: 40px 20px;
+    margin-top: auto;
+    border-top: 1px solid #DADDE1;
+}
+
+.fd {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.fd1 {
+    width: 100%;
+    height: 1px;
+    background-color: #DADDE1;
+}
+
+.fd a,
+.sid,
+.sid0,
+.thr,
+.thr1 {
+    font-size: 0.85rem;
+    color: #65676b;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.sid,
+.thr {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.thr1,
+.sid0 {
+    margin-left: 0;
+}
+
+.fd a:hover,
+.sid0:hover,
+.thr1:hover {
+    text-decoration: underline;
+}
+
+.meta {
+    font-size: 0.9rem;
+    color: #65676b;
+    margin-top: 10px;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 768px) {
+    .box1 {
+        flex-direction: column;
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    .box2 {
+        text-align: center;
+    }
+
+    .minibox2 {
+        margin-left: 0;
+        left: 0;
+        top: 0;
+    }
+
+    .box3 {
+        max-width: 100%;
+        box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
+    }
+
+    .page {
+        display: none;
+    }
+
+    .foot {
+        padding: 30px 15px;
+    }
+
+    .sid,
+    .thr {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .box {
+        padding: 10px;
+    }
+
+    .box3 {
+        padding: 30px 20px;
+        margin: 10px 0;
+    }
+
+    .f1 input,
+    .log,
+    .cna {
+        height: 48px;
+        font-size: 0.95rem;
+    }
+
+    .minibox2 {
+        font-size: 1.2rem;
+    }
+
+    .fd a,
+    .sid,
+    .sid0,
+    .thr,
+    .thr1 {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        font-size: 14px;
+    }
+
+    .box3 {
+        padding: 25px 15px;
+    }
+}

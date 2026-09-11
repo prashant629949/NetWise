@@ -1,0 +1,923 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.heads {
+    width: 100%;
+    height: 60px;
+    border: 0px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: white;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.profiles {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.profiles img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    object-fit: cover;
+}
+
+.p {
+    border: 1px solid white;
+    background-color: white;
+    cursor: pointer;
+}
+
+.box1 {
+    height: auto;
+    width: 400px;
+    background-color: white;
+    border: 0px solid black;
+    border-radius: 20px;
+    position: fixed;
+    left: 70%;
+    top: 50px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+    gap: 5px;
+    display: none;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.profile img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid #555;
+    object-fit: cover;
+}
+
+.mya {
+    height: 40px;
+    width: 235px;
+    border-radius: 25px;
+    border: 1px solid black;
+    color: blue;
+    background-color: white;
+    cursor: pointer;
+}
+
+.toop {
+    height: auto;
+    width: 350px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+    gap: 10px;
+    margin-bottom: 15px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+}
+
+.help {
+    height: 20px;
+    width: 380px;
+    border: 0px solid black;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    margin-bottom: 2px;
+}
+
+.feedback {
+    height: 20px;
+    width: 380px;
+    border: 0px solid black;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    margin-bottom: 2px;
+}
+
+.out {
+    height: 20px;
+    width: 380px;
+    border: 0px solid black;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: aliceblue;
+    margin-bottom: 2px;
+}
+
+.box1.hidden {
+    display: block;
+}
+
+.up {
+    height: 100%;
+    width: 100%;
+    border: 0px solid black;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    z-index: 1;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+    display: none;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.cancel-btn {
+    padding: 10px 22px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background: #f3f4f6;
+    color: #333;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.cancel-btn:hover {
+    background: #e5e7eb;
+}
+
+
+.upin {
+    height: auto;
+    width: auto;
+    border: 1px solid black;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+}
+
+.up.hidden {
+    display: block;
+}
+
+.name {
+    font-family: cursive;
+    font-size: large;
+    font-weight: 550;
+    text-transform: capitalize;
+}
+
+.naam {
+    font-family: cursive;
+    font-size: large;
+    font-weight: 550;
+    text-transform: capitalize;
+}
+
+.n1 {
+    display: flex;
+    flex-direction: row;
+    margin-top: 70px;
+}
+
+.n2 {
+    height: 100%;
+    width: 15.30%;
+    border: 0px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 15px;
+
+}
+
+.n3 {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    border: 0px solid black;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.n3:hover {
+    background-color: aliceblue;
+}
+
+.n35 {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: auto;
+    border: 0px solid black;
+    border-radius: 15px;
+    padding: 15px;
+}
+
+.n35:hover {
+    background-color: aliceblue;
+}
+
+.home {
+    padding-left: 15px;
+    font-family: cursive;
+    font-weight: 700;
+}
+
+.reels1 {
+    padding: 15px;
+    height: auto;
+    width: auto;
+    border: 0px solid black;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.reels {
+    padding-top: 29px;
+    font-family: cursive;
+    font-weight: 700;
+}
+
+.ree:hover {
+    border-radius: 15px;
+    background-color: aliceblue;
+}
+
+.n4 {
+    padding: 15px;
+    height: auto;
+    width: auto;
+    border: 0px solid black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.n4:hover {
+    background-color: aliceblue;
+}
+
+.n5 {
+    padding-left: 15px;
+    padding-top: 10px;
+    font-family: cursive;
+    font-weight: 600;
+}
+
+.oi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 190px;
+    height: auto;
+    width: 33.33%;
+    border-left: 1px solid gainsboro;
+}
+
+.delete {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 0px solid black;
+    border-radius: 15px;
+}
+
+.delete:hover {
+    background-color: aliceblue;
+}
+
+.da1 {
+    margin-top: 5px;
+    padding: 15px;
+    height: auto;
+    width: 100%;
+    border: 0px solid black;
+    border-radius: 15px;
+    display: none;
+    cursor: pointer;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+}
+
+.da1.hidden {
+    display: block;
+}
+
+.nnnn {
+    position: relative;
+    top: 11px;
+    font-family: cursive;
+}
+
+/* ===== Modal Background ===== */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+/* Hide modal when not active */
+.hidden {
+    display: none;
+}
+
+/* ===== Modal Box ===== */
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+/* ===== Close Button ===== */
+.close-update {
+    cursor: pointer;
+    font-size: 25px;
+    color: #555;
+}
+
+.close-update:hover {
+    color: red;
+}
+
+/* ===== Button Styling ===== */
+.update {
+    cursor: pointer;
+    display: flex;
+    padding: 10px;
+    gap: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 0px solid black;
+    border-radius: 15px;
+}
+
+.update:hover {
+    background-color: aliceblue;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.f1 input {
+    width: 363.6px;
+    padding-left: 10px;
+    height: 51.6px;
+    border-radius: 6px;
+    margin: 12PX;
+    border: 1px solid rgb(233, 230, 230);
+    background-color: white;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+}
+
+.updates {
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    top: 10px;
+    height: 40px;
+    width: auto;
+    border: 0px solid black;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+    background-color: rgba(99, 99, 246, 0.578);
+    border-radius: 15px;
+}
+
+.updates:hover {
+    background-color: rgb(67, 67, 224);
+}
+
+.updates:active {
+    background-color: rebeccapurple;
+}
+
+.btn.danger {
+    width: 363.6px;
+    padding-left: 10px;
+    height: 51.6px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 12PX;
+    border: 1px solid rgb(233, 230, 230);
+    background-color: white;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+}
+
+.btn.danger:hover {
+    background-color: #c0392b;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 25px;
+    color: #555;
+}
+
+.btn {
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    top: 10px;
+    height: 40px;
+    width: auto;
+    border: 0px solid black;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+    background-color: rgba(99, 99, 246, 0.578);
+    border-radius: 15px;
+}
+
+.btn:hover {
+    background-color: rgb(67, 67, 224);
+}
+
+.btn:active {
+    background-color: rebeccapurple;
+}
+
+.upl {
+    cursor: pointer;
+    padding: 10px 22px;
+    border: 0px solid black;
+    box-shadow: 5px 5px 15px rgba(65 62 62 / 30%);
+    background-color: rgba(99, 99, 246, 0.578);
+    border-radius: 20px;
+    font-size: 14px;
+    color: #333;
+}
+
+.upload-card {
+    width: 350px;
+    margin: 80px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.upload-card h2 {
+    margin-bottom: 20px;
+}
+
+.preview-box {
+    margin-top: 15px;
+    display: none;
+    justify-content: center;
+}
+
+.preview-box img {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+    border: 2px solid #ccc;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.file-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.choose-btn {
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+.choose-btn:hover {
+    background: #e9e9e9;
+}
+
+#fileName {
+    font-size: 14px;
+    color: #555;
+}
+
+.upload-btn {
+    background: #6b7cff;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.upload-btn:hover {
+    background: #5a6bff;
+}
+
+#searchBox {
+    position: relative;
+    left: 460px;
+    width: 250px;
+    height: 25px;
+    margin-top: 6px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.search-results {
+    position: absolute;
+    left: 1165px;
+    top: 55px;
+    width: 250px;
+    background: white;
+    max-height: 300px;
+    overflow-y: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 5px;
+    z-index: 9999;
+}
+
+.search-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.search-item img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+
+.search-item:hover {
+    background: #f2f2f2;
+}
+
+.small-post {
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 6px;
+}
+
+.post-box {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.post-card {
+    width: 450px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+}
+
+.user-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.username-link {
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.post-media {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.post-body {
+    height: auto;
+    width: auto;
+    margin-bottom: 55px;
+}
+
+.post-media {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+}
+
+.video-post {
+    background: black;
+    display: block;
+}
+
+#chooseWrapper {
+    transition: opacity 0.2s ease;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 768px) {
+
+
+    /* 1. Header Adjustments */
+    .heads {
+        justify-content: space-between;
+        padding: 0 10px;
+        z-index: 11;
+    }
+
+    #searchBox {
+        left: 0;
+        /* Remove fixed left positioning */
+        width: 140px;
+        /* Narrower search for mobile */
+        margin-left: 10px;
+    }
+
+    .logo svg {
+        width: 120px;
+        /* Scale down logo */
+    }
+
+    /* 2. Layout: Stack Navigation and Feed */
+    .n1 {
+        flex-direction: column;
+        /* Stack nav on top of feed */
+        margin-top: 65px;
+    }
+
+    .n2 {
+        width: auto;
+        height: 63px;
+        display: flex;
+        flex-direction: row;
+        /* Horizontal nav for mobile */
+        overflow-x: auto;
+        /* Scrollable menu if too long */
+        padding: 5px;
+        position: sticky;
+        top: 0px;
+        background: white;
+        z-index: 10;
+        border-bottom: 1px solid gainsboro;
+        border-radius: 0px;
+        justify-content: space-between;
+        align-items: center;
+        overflow-y: hidden;
+    }
+
+    .n3,
+    .n35,
+    .ree,
+    .n4 {
+        padding: 8px;
+        flex-shrink: 0;
+        height: min-content;
+    }
+
+    /* Hide text labels in nav to save space, keep icons */
+    .home,
+    .reels,
+    .n5,
+    .name {
+        display: none;
+    }
+
+    /* 3. Feed (The "oi" container) */
+    .oi {
+        width: 100%;
+        /* Full width for mobile */
+        padding-left: 0;
+        border-left: none;
+        position: relative;
+        gap: 0;
+    }
+
+    .post-card {
+        width: 350px;
+        border-radius: 0;
+    }
+
+    /* 4. Profile Box (box1) Positioning */
+    .box1 {
+        width: 90%;
+        left: 5%;
+        /* Center it */
+        top: 65px;
+    }
+
+    /* 5. Search Results Dropdown */
+    .search-results {
+        left: 10%;
+        width: 80%;
+        top: 55px;
+    }
+
+    /* 6. Modals */
+    .modal-content {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .f1 input,
+    .btn.danger {
+        width: 90%;
+        /* Prevent inputs from overflowing */
+    }
+
+    /* ===== CENTER SETTINGS MENU ===== */
+    .da1 {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 320px;
+        max-width: 90%;
+        background: white;
+
+        padding: 15px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+        z-index: 2000;
+        display: none;
+    }
+
+    /* Show when active */
+    .da1.active {
+        display: block;
+    }
+
+    /* Buttons layout */
+    .update,
+    .delete {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        border-radius: 12px;
+        cursor: pointer;
+    }
+
+    .update:hover,
+    .delete:hover {
+        background-color: aliceblue;
+    }
+
+    /* Text fix */
+    .nnnn {
+        position: static;
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    /* Background blur */
+    .body-blur::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1500;
+    }
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    /* Center profile box on mobile */
+    .box1 {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: 92vw;
+        /* full mobile width */
+        max-height: 85vh;
+        /* prevent overflow */
+        overflow-y: auto;
+
+        padding: 15px;
+        z-index: 2000;
+    }
+
+    /* Remove fixed inner widths */
+    .toop,
+    .help,
+    .feedback,
+    .out {
+        width: auto;
+    }
+
+    /* Background dim (mobile only) */
+    body.box1-blur::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1500;
+    }
+
+}
+
+/* Add this to your CSS */
+.post-caption {
+    padding: 8px 15px;
+    font-size: 15px;
+    color: #333;
+    font-family: system-ui, -apple-system, sans-serif;
+    word-wrap: break-word;
+    padding-bottom: 15px;
+}
+
+/* Ensure post header has some spacing */
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    gap: 10px;
+    padding-bottom: 0;
+}
+
+/* Ensure user avatar is sized correctly */
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+}

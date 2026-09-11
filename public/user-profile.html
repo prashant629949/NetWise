@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile | Netwise</title>
+  <link rel="stylesheet" href="style-user-profile.css" />
+  <link rel="website icon" type="png" href="letter-n_9871834.png">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <svg width="200" height="60" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <!-- Network icon - connected nodes -->
+        <circle cx="12" cy="12" r="3" fill="#3b82f6" />
+        <circle cx="28" cy="12" r="3" fill="#3b82f6" />
+        <circle cx="12" cy="28" r="3" fill="#3b82f6" />
+        <circle cx="28" cy="28" r="3" fill="#3b82f6" />
+        <circle cx="20" cy="20" r="3.5" fill="#1e40af" />
+
+        <!-- Connection lines -->
+        <line x1="12" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
+        <line x1="28" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
+        <line x1="12" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
+        <line x1="28" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
+
+        <!-- Text - Net -->
+        <text x="45" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700"
+          fill="#1e293b">
+          Net
+        </text>
+
+        <!-- Text - wise -->
+        <text x="80" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400"
+          fill="#3b82f6">
+          wise
+        </text>
+      </svg>
+    </div>
+    <button id="backBtn" class="back-btn">← Back</button>
+  </header>
+
+  <main class="profile-container">
+    <section class="user-info">
+      <img id="userProfilePic" class="profile-pic" src="default.png" alt="Profile Picture" />
+      <h2 id="userProfileName">Loading...</h2>
+    </section>
+
+    <section class="user-posts">
+      <h3>Posts</h3>
+      <div id="userImagesContainer" class="images-grid"></div>
+    </section>
+  </main>
+
+  <div id="lightboxModal" class="lightbox-modal">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img class="lightbox-content" id="lightboxImage">
+    <video class="lightbox-content" id="lightboxVideo" controls style="display:none;"></video>
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+  </div>
+
+  <script>
+
+function openLightbox(url, type, caption) {
+    const modal = document.getElementById("lightboxModal");
+    const img = document.getElementById("lightboxImage");
+    const vid = document.getElementById("lightboxVideo");
+    const cap = document.getElementById("lightboxCaption");
+
+    img.style.display = "none";
+    vid.style.display = "none";
+    vid.pause();
+
+    if (type === "video") {
+        vid.src = url;
+        vid.style.display = "block";
+    } else {
+        img.src = url;
+        img.style.display = "block";
+    }
+
+    cap.innerText = caption || ""; 
+    modal.style.display = "flex";
+}
+
+function closeLightbox() {
+    const modal = document.getElementById("lightboxModal");
+    const vid = document.getElementById("lightboxVideo");
+    modal.style.display = "none";
+    vid.pause();
+}
+
+document.getElementById("lightboxModal").addEventListener("click", (e) => {
+    if (e.target.id === "lightboxModal") closeLightbox();
+});
+
+    const userId = localStorage.getItem("selectedUserId");
+    const token = localStorage.getItem("token");
+  
+    document.getElementById("backBtn").addEventListener("click", () => {
+      localStorage.removeItem("selectedUserId");
+      window.location.href = "net.html";
+    });
+  
+    if (!userId) {
+      alert("No user selected!");
+      window.location.href = "net.html";
+    }
+  
+    async function loadUserProfile() {
+      try {
+        console.log("Fetching user profile for id:", userId);
+        const res = await fetch(`/api/auth/user/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json().catch(() => null);
+  
+        if (!res.ok) {
+          console.error("Profile fetch failed (status):", res.status, "body:", data);
+          alert("Failed to load profile. Check console for details.");
+          return;
+        }
+  
+        if (data && data.success) {
+          document.getElementById("userProfileName").innerText = data.user.username || "Unknown";
+          document.getElementById("userProfilePic").src = data.user.profileImage || "default.png";
+        } else {
+          console.error("Invalid profile response:", data);
+        }
+      } catch (err) {
+        console.error("Network/server error while loading profile:", err);
+        alert("Error loading profile (see console).");
+      }
+    }
+  
+    async function loadUserImages() {
+  try {
+    console.log("Fetching POSTS for user:", userId);
+
+    const res = await fetch(`/api/post/user/${userId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    const data = await res.json();
+    const container = document.getElementById("userImagesContainer");
+    container.innerHTML = "";
+
+    if (!res.ok || !data.success) {
+      container.innerHTML = "<p>Failed to load posts.</p>";
+      return;
+    }
+
+    if (data.data.length === 0) {
+      container.innerHTML = "<p>No posts yet.</p>";
+      return;
+    }
+
+    data.data.forEach(post => {
+      let element;
+
+      if (post.mediaType === "video") {
+        element = document.createElement("video");
+        element.src = post.mediaUrl;
+        element.controls = false; // Disable controls on grid view
+      } else {
+        element = document.createElement("img");
+        element.src = post.mediaUrl;
+      }
+
+      element.classList.add("user-post"); // Make sure this class is in your CSS for sizing
+      // Basic styling if class is missing
+      element.style.width = "220px";
+      element.style.height = "300px";
+      element.style.objectFit = "cover";
+      element.style.margin = "10px";
+      element.style.cursor = "pointer";
+      element.style.borderRadius = "12px";
+
+      // CLICK EVENT: Open Lightbox
+      element.onclick = () => {
+        openLightbox(post.mediaUrl, post.mediaType, post.caption);
+      };
+
+      container.appendChild(element);
+    });
+
+  } catch (err) {
+    console.error("Error loading posts:", err);
+    document.getElementById("userImagesContainer").innerHTML = "<p>Error loading posts.</p>";
+  }
+}
+
+
+  
+    window.addEventListener("DOMContentLoaded", () => {
+      loadUserProfile();
+      loadUserImages();
+    });
+  </script>
+  
+</body>
+</html>

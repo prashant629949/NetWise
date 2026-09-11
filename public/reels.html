@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetWise || Reels</title>
+    <link rel="website icon" type="png" href="letter-n_9871834.png">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .reels-section {
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .reels-container {
+            height: 100dvh;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            padding: 0;
+            margin: 0;
+            scrollbar-width: none;
+        }
+
+        .reels-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .reel-box {
+            position: relative;
+            scroll-snap-align: start;
+            height: 100dvh;
+            width: 100%;
+            overflow: hidden;
+            background: black;
+        }
+
+        .reel-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .back {
+            padding: 15px;
+            height: 30px;
+            width: 100%;
+            border: none;
+            position: fixed;
+            z-index: 10;
+        }
+
+        /* --- UPDATED OVERLAY STYLES --- */
+        .reel-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 15px;
+            display: flex;
+            flex-direction: column;
+            /* Stack items vertically */
+            align-items: flex-start;
+            gap: 8px;
+            /* Space between user info and caption */
+            color: white;
+            background: rgba(0, 0, 0, 0.45);
+            /* Semi-transparent background */
+            padding: 10px 14px;
+            border-radius: 15px;
+            max-width: 75%;
+            /* Don't let text hit the icons on the right */
+            backdrop-filter: blur(2px);
+        }
+
+        /* New container for the Image + Username row */
+        .reel-user-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .reel-dp {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .reel-username {
+            font-weight: 600;
+            font-family: "Poppins", sans-serif;
+            font-size: 15px;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* New Caption Style */
+        .reel-caption-text {
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #f0f0f0;
+            margin-left: 5px;
+            /* Slight offset to align with text above */
+            word-wrap: break-word;
+        }
+
+        /* ... keep your reel-actions media queries ... */
+        .reel-actions {
+            position: absolute;
+            right: 15px;
+            bottom: 20%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .reel-actions svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        @media (max-width: 768px) {
+            .reel-actions {
+                right: 10px;
+                gap: 18px;
+            }
+
+            .reel-overlay {
+                bottom: 60px;
+                /* Move up slightly on mobile so it doesn't hit bottom edge */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="back">
+        <div
+            style="height: auto; width: 35px; border: 1px solid rgb(111, 199, 233); padding: 8px; background-color: rgb(111, 199, 233); border-radius: 5px;">
+            <a href="net.html" style="text-decoration: none; color: black;">Back</a>
+        </div>
+    </header>
+    <section class="reels-section">
+        <div id="videoContainer" class="reels-container"></div>
+    </section>
+    <script>
+        const token = localStorage.getItem("token");
+
+// ... Keep setupAutoPlay and setupSoundToggle functions exactly as they are ...
+function setupAutoPlay() {
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) entry.target.play();
+            else entry.target.pause();
+        });
+    }, { threshold: 0.75 });
+    document.querySelectorAll(".reel-box video").forEach(video => observer.observe(video));
+}
+
+function setupSoundToggle() {
+    document.querySelectorAll(".reel-box video").forEach(video => {
+        video.muted = true;
+        video.addEventListener("click", () => { video.muted = !video.muted; });
+    });
+}
+
+async function loadUserVideos() {
+    try {
+        const res = await fetch("/api/post/feed", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = await res.json();
+        const container = document.getElementById("videoContainer");
+        container.innerHTML = "";
+
+        if (!data.success || data.data.length === 0) {
+            container.innerHTML = "<p style='color:white; text-align:center; margin-top:50px;'>No reels yet.</p>";
+            return;
+        }
+
+        const videos = data.data.filter(p => p.mediaType === "video");
+
+        if (videos.length === 0) {
+            container.innerHTML = "<p style='color:white; text-align:center; margin-top:50px;'>No video reels available.</p>";
+            return;
+        }
+
+        videos.forEach(post => {
+            const reelBox = document.createElement("div");
+            reelBox.className = "reel-box";
+
+            // UPDATED HTML STRUCTURE BELOW
+            reelBox.innerHTML = `
+                <video src="${post.mediaUrl}" loop muted playsinline webkit-playsinline></video>
+                
+                <div class="reel-overlay">
+                    <div class="reel-user-row">
+                        <img 
+                            src="${post.uploadedBy?.profileImage || 'default.png'}"
+                            class="reel-dp clickable"
+                            data-userid="${post.uploadedBy?._id}"
+                        />
+                        <span 
+                            class="reel-username clickable"
+                            data-userid="${post.uploadedBy?._id}">
+                            @${post.uploadedBy?.username || "unknown"}
+                        </span>
+                    </div>
+                    
+                    <div class="reel-caption-text">
+                        ${post.caption || ""}
+                    </div>
+                </div>
+            `;
+            container.appendChild(reelBox);
+        });
+
+        setupSoundToggle();
+        setupAutoPlay();
+
+    } catch (err) {
+        console.error("Error loading reels:", err);
+    }
+}
+
+window.addEventListener("DOMContentLoaded", loadUserVideos);
+
+// ... Keep your click listener for profile navigation ...
+document.getElementById("videoContainer").addEventListener("click", (e) => {
+    const target = e.target.closest(".clickable");
+    if (!target) return;
+    const userId = target.dataset.userid;
+    if (!userId) return;
+    localStorage.setItem("selectedUserId", userId);
+    window.location.href = "user-profile.html";
+});
+
+
+
+    </script>
+</body>
+
+</html>

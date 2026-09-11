@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up page of Netwise</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="website icon" type="png" href="letter-n_9871834.png">
+</head>
+<body>
+    <svg
+  width="500"
+  height="980"
+  viewBox="0 0 140 40"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+
+  <!-- Network icon - connected nodes -->
+  <circle cx="12" cy="12" r="3" fill="#3b82f6" />
+  <circle cx="28" cy="12" r="3" fill="#3b82f6" />
+  <circle cx="12" cy="28" r="3" fill="#3b82f6" />
+  <circle cx="28" cy="28" r="3" fill="#3b82f6" />
+  <circle cx="20" cy="20" r="3.5" fill="#1e40af" />
+  
+  <!-- Connection lines -->
+  <line x1="12" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
+  <line x1="28" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
+  <line x1="12" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
+  <line x1="28" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
+  
+  <!-- Text - Net -->
+  <text
+    x="45"
+    y="25"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="20"
+    font-weight="700"
+    fill="#1e293b"
+  >
+    Net
+  </text>
+  
+  <!-- Text - wise -->
+  <text
+    x="80"
+    y="25"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="20"
+    font-weight="400"
+    fill="#3b82f6"
+  >
+    wise
+  </text>
+</svg>
+    <div class="container">
+        <h1 class="h">Create a new account</h1>
+        <h4 class="hh">Quick and easy.</h4>
+        <form class="box" id="signup">
+            <input type="text" id="username" placeholder="Enter Your Username" required>
+            <input type="text" id="email" placeholder="Enter Your Email" required>
+            <input type="password" id="password" placeholder="Enter Your Password" required>
+            <span class="t">Your contact information may have been uploaded to Netwise by people<br> who use our service. Learn more</span>
+            <span class="t">By clicking Sign Up, you agree to our Terms , Privacy Policy , and Cookie <br>Policy. You may receive SMS notifications from us. You can opt out at any<br> time.</span>
+            <button type="button" onclick="register()">SignUp</button>
+        </form>
+        <span class="do"><a href="login.html">Do You Already Have An Account?</a></span>
+    </div>
+    <script>
+        async function register(){
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            const res = await fetch("/api/auth/register",{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({username,email,password})
+            });
+            const data = await res.json();
+            if (res.ok) {
+                // Create a temporary success message
+                const msg = document.createElement("div");
+                msg.innerText = data.message || "User register successfully";
+                msg.style.position = "fixed";
+                msg.style.top = "20px";
+                msg.style.left = "50%";
+                msg.style.transform = "translateX(-50%)";
+                msg.style.background = "green";
+                msg.style.color = "white";
+                msg.style.padding = "10px 20px";
+                msg.style.borderRadius = "8px";
+                msg.style.zIndex = "9999";
+                msg.style.fontFamily = "sans-serif";
+                document.body.appendChild(msg);
+
+                // Redirect automatically after 2 seconds
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 1000);
+            } else {
+                // For error messages (e.g. invalid credentials)
+                const msg = document.createElement("div");
+                msg.innerText = data.message || "Login failed!";
+                msg.style.position = "fixed";
+                msg.style.top = "20px";
+                msg.style.left = "50%";
+                msg.style.transform = "translateX(-50%)";
+                msg.style.background = "red";
+                msg.style.color = "white";
+                msg.style.padding = "10px 20px";
+                msg.style.borderRadius = "8px";
+                msg.style.zIndex = "9999";
+                msg.style.fontFamily = "sans-serif";
+                document.body.appendChild(msg);
+
+                setTimeout(() => {
+                    msg.remove();
+                }, 2000);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    border: 0px solid black;
+    height: 530px;
+    width: 475px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 395px;
+    border-radius: 8px;
+    border: 1px solid rgb(144, 138, 138);
+    padding: 15px;
+    position: relative;
+    bottom: 70px;
+
+}
+
+button {
+    padding: 10px;
+    width: 140px;
+    position: relative;
+    left: 142px;
+    bottom: 50px;
+    border: 1px solid blue;
+    border-radius: 8px;
+    background-color: blue;
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.h {
+    position: relative;
+    bottom: 32px;
+}
+
+.hh {
+    position: relative;
+    bottom: 75px;
+    color: #606770;
+}
+
+.t {
+    font-weight: 100;
+    font-size: small;
+    position: relative;
+    bottom: 65px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: gray;
+}
+
+.do {
+    font-size: large;
+    cursor: pointer;
+    position: relative;
+    bottom: 20px;
+}
+
+.do a {
+    text-decoration: none;
+    color: rgb(55, 135, 210);
+}
+
+.do a:active {
+    color: red;
+}
+
+/* 📱 MOBILE PHONES ONLY */
+@media (max-width: 480px) {
+
+    html,
+    body {
+        
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        overflow-x: hidden;
+    }
+
+    /* Logo */
+    svg {
+        width: 260px;
+        height: auto;
+        margin: 20px auto;
+        display: none;
+    }
+
+    /* Main container */
+    .container {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        padding: 20px 15px;
+        box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Headings */
+    .h {
+        font-size: 22px;
+        bottom: 0;
+        text-align: center;
+    }
+
+    .hh {
+        font-size: 14px;
+        bottom: 0;
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    /* Inputs */
+    input[type="text"],
+    input[type="password"] {
+        width: auto;
+        bottom: 0;
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    /* Info text */
+    .t {
+        font-size: 12px;
+        bottom: 0;
+        line-height: 1.4;
+        text-align: center;
+    }
+
+    /* Button */
+    button {
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        margin-top: 10px;
+        font-size: 16px;
+    }
+
+    /* Login link */
+    .do {
+        bottom: 0;
+        text-align: center;
+        font-size: 14px;
+        margin-top: 15px;
+    }
+}
