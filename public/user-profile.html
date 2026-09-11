@@ -3,56 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Profile | Netwise</title>
+  <title>Creator Profile | NetWise</title>
   <link rel="stylesheet" href="style-user-profile.css" />
   <link rel="website icon" type="png" href="letter-n_9871834.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Ambient background glow -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
   <header class="header">
-    <div class="logo">
-      <svg width="200" height="60" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-
-        <!-- Network icon - connected nodes -->
-        <circle cx="12" cy="12" r="3" fill="#3b82f6" />
-        <circle cx="28" cy="12" r="3" fill="#3b82f6" />
-        <circle cx="12" cy="28" r="3" fill="#3b82f6" />
-        <circle cx="28" cy="28" r="3" fill="#3b82f6" />
-        <circle cx="20" cy="20" r="3.5" fill="#1e40af" />
-
-        <!-- Connection lines -->
-        <line x1="12" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-        <line x1="28" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-        <line x1="12" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-        <line x1="28" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-
-        <!-- Text - Net -->
-        <text x="45" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700"
-          fill="#1e293b">
-          Net
-        </text>
-
-        <!-- Text - wise -->
-        <text x="80" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400"
-          fill="#3b82f6">
-          wise
-        </text>
-      </svg>
+    <div class="header-inner">
+      <a href="net.html" class="logo-link">
+        <div class="logo-badge">
+          <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="9" fill="url(#nw-grad)"/>
+            <circle cx="12" cy="12" r="3" fill="#ffffff" />
+            <circle cx="28" cy="12" r="3" fill="#ffffff" />
+            <circle cx="12" cy="28" r="3" fill="#ffffff" />
+            <circle cx="28" cy="28" r="3" fill="#ffffff" />
+            <circle cx="20" cy="20" r="4.5" fill="#ffffff" />
+            <line x1="12" y1="12" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="28" y1="12" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="12" y1="28" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="28" y1="28" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="nw-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="logo-title">Net<span>Wise</span></span>
+        </div>
+      </a>
+      <button id="backBtn" class="back-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        <span>Back to Feed</span>
+      </button>
     </div>
-    <button id="backBtn" class="back-btn">← Back</button>
   </header>
 
   <main class="profile-container">
-    <section class="user-info">
-      <img id="userProfilePic" class="profile-pic" src="default.png" alt="Profile Picture" />
-      <h2 id="userProfileName">Loading...</h2>
+    <!-- User Banner Card -->
+    <section class="user-banner-card">
+      <div class="user-cover-gradient"></div>
+      <div class="user-hero-content">
+        <div class="user-info">
+          <div class="avatar-ring-large">
+            <img id="userProfilePic" class="profile-pic" src="default.png" alt="Profile Picture" />
+          </div>
+          <div class="user-names">
+            <h1 id="userProfileName">Loading creator...</h1>
+            <span class="creator-badge">NetWise Creator</span>
+          </div>
+        </div>
+        <div class="user-actions">
+          <button class="follow-btn" onclick="toggleFollow(this)">Follow</button>
+        </div>
+      </div>
     </section>
 
+    <!-- User's Posts Section -->
     <section class="user-posts">
-      <h3>Posts</h3>
+      <div class="section-title-row">
+        <h3>Shared Posts &amp; Media</h3>
+        <span class="posts-count-indicator">Latest Updates</span>
+      </div>
       <div id="userImagesContainer" class="images-grid"></div>
     </section>
   </main>
 
+  <!-- Lightbox Modal -->
   <div id="lightboxModal" class="lightbox-modal">
     <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
     <img class="lightbox-content" id="lightboxImage">
@@ -61,143 +86,149 @@
   </div>
 
   <script>
+    function openLightbox(url, type, caption) {
+      const modal = document.getElementById("lightboxModal");
+      const img = document.getElementById("lightboxImage");
+      const vid = document.getElementById("lightboxVideo");
+      const cap = document.getElementById("lightboxCaption");
 
-function openLightbox(url, type, caption) {
-    const modal = document.getElementById("lightboxModal");
-    const img = document.getElementById("lightboxImage");
-    const vid = document.getElementById("lightboxVideo");
-    const cap = document.getElementById("lightboxCaption");
+      img.style.display = "none";
+      vid.style.display = "none";
+      vid.pause();
 
-    img.style.display = "none";
-    vid.style.display = "none";
-    vid.pause();
-
-    if (type === "video") {
+      if (type === "video") {
         vid.src = url;
         vid.style.display = "block";
-    } else {
+      } else {
         img.src = url;
         img.style.display = "block";
+      }
+
+      cap.innerText = caption || ""; 
+      modal.style.display = "flex";
     }
 
-    cap.innerText = caption || ""; 
-    modal.style.display = "flex";
-}
+    function closeLightbox() {
+      const modal = document.getElementById("lightboxModal");
+      const vid = document.getElementById("lightboxVideo");
+      modal.style.display = "none";
+      vid.pause();
+    }
 
-function closeLightbox() {
-    const modal = document.getElementById("lightboxModal");
-    const vid = document.getElementById("lightboxVideo");
-    modal.style.display = "none";
-    vid.pause();
-}
-
-document.getElementById("lightboxModal").addEventListener("click", (e) => {
-    if (e.target.id === "lightboxModal") closeLightbox();
-});
+    document.getElementById("lightboxModal").addEventListener("click", (e) => {
+      if (e.target.id === "lightboxModal") closeLightbox();
+    });
 
     const userId = localStorage.getItem("selectedUserId");
     const token = localStorage.getItem("token");
-  
+
     document.getElementById("backBtn").addEventListener("click", () => {
       localStorage.removeItem("selectedUserId");
       window.location.href = "net.html";
     });
-  
+
     if (!userId) {
       alert("No user selected!");
       window.location.href = "net.html";
     }
-  
+
+    function toggleFollow(btn) {
+      if (btn.innerText === "Follow") {
+        btn.innerText = "Following";
+        btn.classList.add("following");
+      } else {
+        btn.innerText = "Follow";
+        btn.classList.remove("following");
+      }
+    }
+
     async function loadUserProfile() {
       try {
-        console.log("Fetching user profile for id:", userId);
         const res = await fetch(`/api/auth/user/${userId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json().catch(() => null);
-  
+
         if (!res.ok) {
-          console.error("Profile fetch failed (status):", res.status, "body:", data);
-          alert("Failed to load profile. Check console for details.");
+          alert("Failed to load profile.");
           return;
         }
-  
+
         if (data && data.success) {
           document.getElementById("userProfileName").innerText = data.user.username || "Unknown";
           document.getElementById("userProfilePic").src = data.user.profileImage || "default.png";
-        } else {
-          console.error("Invalid profile response:", data);
         }
       } catch (err) {
-        console.error("Network/server error while loading profile:", err);
-        alert("Error loading profile (see console).");
+        console.error("Network error loading profile:", err);
       }
     }
-  
+
     async function loadUserImages() {
-  try {
-    console.log("Fetching POSTS for user:", userId);
+      try {
+        const res = await fetch(`/api/post/user/${userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
-    const res = await fetch(`/api/post/user/${userId}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+        const data = await res.json();
+        const container = document.getElementById("userImagesContainer");
+        container.innerHTML = "";
 
-    const data = await res.json();
-    const container = document.getElementById("userImagesContainer");
-    container.innerHTML = "";
+        if (!res.ok || !data.success) {
+          container.innerHTML = "<p class='empty-state'>Failed to load posts.</p>";
+          return;
+        }
 
-    if (!res.ok || !data.success) {
-      container.innerHTML = "<p>Failed to load posts.</p>";
-      return;
-    }
+        if (!data.data || data.data.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state-card">
+              <p>This user hasn't posted any media yet.</p>
+            </div>
+          `;
+          return;
+        }
 
-    if (data.data.length === 0) {
-      container.innerHTML = "<p>No posts yet.</p>";
-      return;
-    }
+        data.data.forEach(post => {
+          const itemWrap = document.createElement("div");
+          itemWrap.className = "user-grid-item";
 
-    data.data.forEach(post => {
-      let element;
+          let element;
+          if (post.mediaType === "video") {
+            element = document.createElement("video");
+            element.src = post.mediaUrl;
+            element.controls = false;
+          } else {
+            element = document.createElement("img");
+            element.src = post.mediaUrl;
+          }
 
-      if (post.mediaType === "video") {
-        element = document.createElement("video");
-        element.src = post.mediaUrl;
-        element.controls = false; // Disable controls on grid view
-      } else {
-        element = document.createElement("img");
-        element.src = post.mediaUrl;
+          element.classList.add("user-post");
+          itemWrap.onclick = () => {
+            openLightbox(post.mediaUrl, post.mediaType, post.caption);
+          };
+
+          const overlay = document.createElement("div");
+          overlay.className = "grid-item-overlay";
+          overlay.innerHTML = `<span>${post.caption ? escapeHtml(post.caption) : "View Post"}</span>`;
+
+          itemWrap.appendChild(element);
+          itemWrap.appendChild(overlay);
+          container.appendChild(itemWrap);
+        });
+
+      } catch (err) {
+        console.error("Error loading posts:", err);
+        document.getElementById("userImagesContainer").innerHTML = "<p class='empty-state'>Error loading posts.</p>";
       }
+    }
 
-      element.classList.add("user-post"); // Make sure this class is in your CSS for sizing
-      // Basic styling if class is missing
-      element.style.width = "220px";
-      element.style.height = "300px";
-      element.style.objectFit = "cover";
-      element.style.margin = "10px";
-      element.style.cursor = "pointer";
-      element.style.borderRadius = "12px";
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
 
-      // CLICK EVENT: Open Lightbox
-      element.onclick = () => {
-        openLightbox(post.mediaUrl, post.mediaType, post.caption);
-      };
-
-      container.appendChild(element);
-    });
-
-  } catch (err) {
-    console.error("Error loading posts:", err);
-    document.getElementById("userImagesContainer").innerHTML = "<p>Error loading posts.</p>";
-  }
-}
-
-
-  
     window.addEventListener("DOMContentLoaded", () => {
       loadUserProfile();
       loadUserImages();
     });
   </script>
-  
 </body>
 </html>

@@ -2,185 +2,210 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width, initial-scale=1.0">
-    <title>Netwise login</title>
-    <link rel="website icon" type="png" href="letter-n_9871834.png">
-    <link rel="stylesheet" href="style1.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetWise | Sign In</title>
+  <link rel="website icon" type="png" href="letter-n_9871834.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style1.css">
 </head>
 
 <body>
-    <div class="box">
-        <div class="box1">
-            <div class="box2"><svg
-                viewBox="0 0 140 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-              
-                <!-- Network icon - connected nodes -->
-                <circle cx="12" cy="12" r="3" fill="#3b82f6" />
-                <circle cx="28" cy="12" r="3" fill="#3b82f6" />
-                <circle cx="12" cy="28" r="3" fill="#3b82f6" />
-                <circle cx="28" cy="28" r="3" fill="#3b82f6" />
-                <circle cx="20" cy="20" r="3.5" fill="#1e40af" />
-                
-                <!-- Connection lines -->
-                <line x1="12" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-                <line x1="28" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-                <line x1="12" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-                <line x1="28" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-                
-                <!-- Text - Net -->
-                <text
-                  x="45"
-                  y="25"
-                  font-family="system-ui, -apple-system, sans-serif"
-                  font-size="20"
-                  font-weight="700"
-                  fill="#1e293b"
-                >
-                  Net
-                </text>
-                
-                <!-- Text - wise -->
-                <text
-                  x="80"
-                  y="25"
-                  font-family="system-ui, -apple-system, sans-serif"
-                  font-size="20"
-                  font-weight="400"
-                  fill="#3b82f6"
-                >
-                  wise
-                </text>
-              </svg>
-                <h2 class="minibox2">Netwise helps you connect and share with the people in your life.</h2>
-            </div>
-            <div class="box3">
-                <form class="f1" id="login">
-                    <input type="text" id="username" name="username" placeholder="ENTER USERNAME"
-                        required>
-                    <input type="password" id="password" name="password" placeholder="Password" required>
+  <!-- Ambient background lighting effects -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
 
-                    <button type="button" class="log" onclick="login()">Log in</button>
-                </form>
-                <a class="fp">
-                    Forgotten password?
-                </a>
-                <div class="line"></div>
-                <button class="cna"><a href="signup.html" style="color: white; text-decoration: none;">Create new account</a></button>
-            </div>
+  <main class="auth-container">
+    <div class="auth-card-wrapper">
+      
+      <!-- Left side: Brand & Highlights -->
+      <section class="auth-brand-side">
+        <div class="brand-header">
+          <div class="brand-logo-badge">
+            <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="10" fill="url(#logo-grad)"/>
+              <circle cx="12" cy="12" r="3" fill="#ffffff" />
+              <circle cx="28" cy="12" r="3" fill="#ffffff" />
+              <circle cx="12" cy="28" r="3" fill="#ffffff" />
+              <circle cx="28" cy="28" r="3" fill="#ffffff" />
+              <circle cx="20" cy="20" r="4.5" fill="#ffffff" />
+              <line x1="12" y1="12" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="28" y1="12" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="12" y1="28" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+              <line x1="28" y1="28" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="logo-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#6366f1"/>
+                  <stop offset="1" stop-color="#8b5cf6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="brand-name">Net<span>Wise</span></span>
+          </div>
+          <div class="badge-pill">✨ Version 2.0</div>
         </div>
+
+        <h1 class="brand-headline">Connect, share &amp; discover what's happening now.</h1>
+        <p class="brand-subtext">The next-generation social stream built for authentic stories, creators, and real-time community conversations.</p>
+
+        <div class="features-list">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div>
+              <strong>Instant Feed</strong>
+              <p>Explore multimedia posts from creator communities worldwide.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            </div>
+            <div>
+              <strong>Dynamic Reels</strong>
+              <p>Immersive, seamless vertical video playback tailored for you.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div>
+              <strong>Privacy First</strong>
+              <p>Total control over your data, profile visuals, and privacy.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right side: Modern Glassmorphic Form Card -->
+      <section class="auth-form-side">
+        <div class="auth-form-card">
+          <div class="form-header">
+            <h2>Welcome Back</h2>
+            <p>Please enter your credentials to access your feed.</p>
+          </div>
+
+          <form class="f1" id="login" onsubmit="event.preventDefault(); login();">
+            <div class="input-group">
+              <label for="username">Username</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                <input type="text" id="username" name="username" placeholder="e.g. alexander" required autocomplete="username">
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label for="password">Password</label>
+              <div class="input-wrapper">
+                <svg class="input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+              </div>
+            </div>
+
+            <button type="submit" class="log">
+              <span>Sign In</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </form>
+
+          <div class="divider">
+            <span>or</span>
+          </div>
+
+          <div class="signup-prompt">
+            <p>New to NetWise?</p>
+            <a href="signup.html" class="cna-btn">Create an Account</a>
+          </div>
+        </div>
+      </section>
+
     </div>
-    <div class="page"><a>Create a Page</a> for a celebrity, brand or business.</div>
-    <footer class="foot">
-        <div class="fd">
-            <div class="fd1" style="height: auto; background-color: white;">
-            <a>English (UK)</a>
-            <a>&nbsp;हिन्दी</a>
-            <a>&nbsp;ଓଡ଼ିଆ</a>
-            <a>&nbsp;বাংলা&nbsp;</a>
-            <a>اردو</a>
-            <a>&nbsp;ਪੰਜਾਬੀ</a>
-            <a>&nbsp;ગુજરાતી</a>
-            <a>&nbsp;मराठी</a>
-            <a>&nbsp;தமிழ்</a>
-            <a>&nbsp;తెలుగు</a>
-            <a>&nbsp;മലയാളം</a></div>
-            <hr>
-            <side class="sid">
-                <side class="sid0">Sign Up</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Log in</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Messenger</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Facebook Lite</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Video</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Meta Pay</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Meta Store</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Meta Quest</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Ray-Ban Meta</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Meta AI</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Meta AI more content</side>
-                <side class="sid0">&nbsp;&nbsp;&nbsp;&nbsp;Instagram</side>
-            </side>
-            <div class="thr">
-                <side class="thr1">Threads</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Voting Information Centre</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Privacy Policy</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Privacy Centre</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;About</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Create ad</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Create Page</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Devlopers</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Careers</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Cookies</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;AdChoices</side>
-                <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Terms</side>
-                <div>
-                    <side class="thr1">Help</side>
-                    <side class="thr1">&nbsp;&nbsp;&nbsp;&nbsp;Contact uploading and non-users</side>
-                </div>
-                <div class="meta"> Meta © 2025</div>
-            </div>
-        </div>
-    </footer>
-    <script>
-        async function login() {
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
+  </main>
 
-            const res = await fetch("/api/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ username, password }),
-            });
-            const data = await res.json();
-            console.log("Login response:", data);
-            if (res.ok) {
-                localStorage.setItem("token", data.token);
-                console.log("Token saved:", data.token);
-                // Create a temporary success message
-                const msg = document.createElement("div");
-                msg.innerText = data.message || "Login successful!";
-                msg.style.position = "fixed";
-                msg.style.top = "20px";
-                msg.style.left = "50%";
-                msg.style.transform = "translateX(-50%)";
-                msg.style.background = "green";
-                msg.style.color = "white";
-                msg.style.padding = "10px 20px";
-                msg.style.borderRadius = "8px";
-                msg.style.zIndex = "9999";
-                msg.style.fontFamily = "sans-serif";
-                document.body.appendChild(msg);
+  <!-- Modern NetWise Footer -->
+  <footer class="modern-footer">
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Explore</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Community Guidelines</a>
+      <a href="#">Support</a>
+    </div>
+    <div class="footer-copy">
+      &copy; 2026 NetWise Inc. All rights reserved.
+    </div>
+  </footer>
 
-                // Redirect automatically after 1 seconds
-                setTimeout(() => {
-                    window.location.href = "net.html";
-                }, 1000);
-            } else {
-                // For error messages (e.g. invalid credentials)
-                const msg = document.createElement("div");
-                msg.innerText = data.message || "Login failed!";
-                msg.style.position = "fixed";
-                msg.style.top = "20px";
-                msg.style.left = "50%";
-                msg.style.transform = "translateX(-50%)";
-                msg.style.background = "red";
-                msg.style.color = "white";
-                msg.style.padding = "10px 20px";
-                msg.style.borderRadius = "8px";
-                msg.style.zIndex = "9999";
-                msg.style.fontFamily = "sans-serif";
-                document.body.appendChild(msg);
+  <script>
+    async function login() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
 
-                setTimeout(() => {
-                    msg.remove();
-                }, 2000);
-            }
+      if (!username || !password) {
+        showToast("Please enter both username and password.", "error");
+        return;
+      }
+
+      const logBtn = document.querySelector(".log");
+      const originalText = logBtn.innerHTML;
+      logBtn.innerHTML = `<span>Signing in...</span>`;
+      logBtn.disabled = true;
+
+      try {
+        const res = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+          localStorage.setItem("token", data.token);
+          showToast(data.message || "Welcome back! Redirecting...", "success");
+          setTimeout(() => {
+            window.location.href = "net.html";
+          }, 800);
+        } else {
+          showToast(data.message || "Invalid username or password.", "error");
+          logBtn.innerHTML = originalText;
+          logBtn.disabled = false;
         }
+      } catch (err) {
+        console.error("Login request failed:", err);
+        showToast("Network error. Please try again.", "error");
+        logBtn.innerHTML = originalText;
+        logBtn.disabled = false;
+      }
+    }
 
-    </script>
+    function showToast(message, type = "info") {
+      const old = document.querySelector(".modern-toast");
+      if (old) old.remove();
+
+      const toast = document.createElement("div");
+      toast.className = `modern-toast toast-${type}`;
+      toast.innerHTML = `
+        <span class="toast-dot"></span>
+        <span>${message}</span>
+      `;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add("show");
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+  </script>
 </body>
 
 </html>

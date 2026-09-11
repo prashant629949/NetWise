@@ -4,171 +4,304 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Netwise</title>
+  <title>NetWise | Feed</title>
   <link rel="stylesheet" href="stylenet.css">
   <link rel="website icon" type="png" href="letter-n_9871834.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
+  <!-- Ambient background glow -->
+  <div class="ambient-glow glow-top"></div>
+  <div class="ambient-glow glow-bottom"></div>
+
+  <!-- Top Sticky Navigation Bar -->
   <header class="heads">
-    <div class="logo">
-      <svg width="200" height="60" viewBox="0 0 140 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="header-inner">
+      <!-- Logo -->
+      <a href="net.html" class="logo-link">
+        <div class="logo-badge">
+          <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="9" fill="url(#nw-grad)"/>
+            <circle cx="12" cy="12" r="3" fill="#ffffff" />
+            <circle cx="28" cy="12" r="3" fill="#ffffff" />
+            <circle cx="12" cy="28" r="3" fill="#ffffff" />
+            <circle cx="28" cy="28" r="3" fill="#ffffff" />
+            <circle cx="20" cy="20" r="4.5" fill="#ffffff" />
+            <line x1="12" y1="12" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="28" y1="12" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="12" y1="28" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <line x1="28" y1="28" x2="20" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="nw-grad" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366f1"/>
+                <stop offset="1" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="logo-title">Net<span>Wise</span></span>
+        </div>
+      </a>
 
-        <!-- Network icon - connected nodes -->
-        <circle cx="12" cy="12" r="3" fill="#3b82f6" />
-        <circle cx="28" cy="12" r="3" fill="#3b82f6" />
-        <circle cx="12" cy="28" r="3" fill="#3b82f6" />
-        <circle cx="28" cy="28" r="3" fill="#3b82f6" />
-        <circle cx="20" cy="20" r="3.5" fill="#1e40af" />
+      <!-- Search Input Container -->
+      <div class="search-container">
+        <div class="search-wrapper">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchBox" placeholder="Search creators, posts &amp; topics..." oninput="performSearch()" autocomplete="off">
+        </div>
+        <div id="searchResults" class="search-results"></div>
+      </div>
 
-        <!-- Connection lines -->
-        <line x1="12" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-        <line x1="28" y1="12" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-        <line x1="12" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-        <line x1="28" y1="28" x2="20" y2="20" stroke="#3b82f6" stroke-width="2" />
-
-        <!-- Text - Net -->
-        <text x="45" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700"
-          fill="#1e293b">
-          Net
-        </text>
-
-        <!-- Text - wise -->
-        <text x="80" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="400"
-          fill="#3b82f6">
-          wise
-        </text>
-      </svg>
-    </div>
-    <input type="text" id="searchBox" placeholder="Search..." oninput="performSearch()">
-    <div id="searchResults" class="search-results"></div>
-    <div class="profiles">
-      <button class="p" id="pp"><img class="profile-pic" src="" alt=""></button>
+      <!-- Right Header Actions -->
+      <div class="profiles">
+        <a href="profile.html" class="header-action-btn" title="Create Post">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <span>New Post</span>
+        </a>
+        <button class="p" id="pp" aria-label="User Menu">
+          <img class="profile-pic" src="default.png" alt="Profile avatar">
+        </button>
+      </div>
     </div>
   </header>
+
+  <!-- Modern User Account Menu Dropdown -->
   <article class="box1" id="b1">
     <div class="toop">
       <div class="profile">
-        <img class="profile-pic" src="" alt="">
-        <div class="naam">Hi,<span class="name" id="username"></span></div>
+        <div class="avatar-ring">
+          <img class="profile-pic" src="default.png" alt="User avatar">
+        </div>
+        <div class="profile-meta">
+          <div class="naam">Hello, <span class="name" id="username">Explorer</span></div>
+          <span class="profile-badge">Active Member</span>
+        </div>
       </div>
-      <button class="mya" id="uploadphoto">Manage Your facebook Account</button>
+
+      <button class="mya" id="uploadphoto">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        Change Profile Picture
+      </button>
+
+      <!-- Upload photo panel -->
       <div class="up" id="b2">
         <div class="upin">
-          <h2>Upload Profile Picture</h2>
+          <h4>Upload New Avatar</h4>
           <form id="uploadForm" enctype="multipart/form-data">
-            <input id="fileInput" class="upl1" type="file" name="file" accept="image/*" required hidden />
-          
-        </form>
+            <label for="fileInput" class="custom-file-upload">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              Choose Image
+            </label>
+            <input id="fileInput" class="upl1" type="file" name="file" accept="image/*" required />
+            <button type="submit" class="upload-submit-btn">Save Avatar</button>
+          </form>
+        </div>
       </div>
     </div>
-    </div>
-    <div class="help">
-      <i data-visualcompletion="css-img" class="x1b0d499 xep6ejk" aria-hidden="true"
-        style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v4/yr/r/uKFDlQgEw6u.png&quot;); background-position: 0px -239px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>Help
-      & Support
-    </div>
-    <div class="feedback">
-      <i data-visualcompletion="css-img" class="x1b0d499 xep6ejk" aria-hidden="true"
-        style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/0SNwLH9KpUM.png&quot;); background-position: 0px -88px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-      Give Feedback
-    </div>
-    <div class="out">
-      <i data-visualcompletion="css-img" class="x1b0d499 xep6ejk" aria-hidden="true"
-        style="background-image: url(&quot;https://static.xx.fbcdn.net/rsrc.php/v4/yd/r/0SNwLH9KpUM.png&quot;); background-position: 0px -130px; background-size: auto; width: 20px; height: 20px; background-repeat: no-repeat; display: inline-block;"></i>
-      <button id="logout" style="background-color: aliceblue; border: 0px solid white; cursor: pointer;">Log
-        Out</button>
+
+    <div class="menu-divider"></div>
+
+    <div class="dropdown-links">
+      <a href="profile.html" class="menu-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Your Profile</span>
+      </a>
+      <div class="menu-item help" onclick="alert('NetWise Support: For assistance, please email support@netwise.social')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Help &amp; Support</span>
+      </div>
+      <div class="menu-item feedback" onclick="alert('Thank you for your feedback! We are constantly updating NetWise.')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        <span>Give Feedback</span>
+      </div>
+      <div class="menu-item out">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        <button id="logout">Log Out</button>
+      </div>
     </div>
   </article>
-  <nav class="n1">
-    <div class="n2">
-      <a href="profile.html" class="n3"><img class="profile-pic" src="" alt="" style="width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      border: 1px solid #555;
-      object-fit: cover;"><span class="name" id="usernames" style=" color: black;padding-left: 15px;"></span></a>
-      <a href="net.html" style="text-decoration: none; color: black;">
-        <div class="n35"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-Width="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-          <div class="home">Home</div>
-        </div>
-      </a>
-      <a href="reels.html" class="ree" style="text-decoration: none; color: black; display: flex;flex-direction: row;">
-        <div class="reels1"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24"
-            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="6" width="20" height="16" rx="2" />
-            <path d="m2 6 4-4" />
-            <path d="m6 6 4-4" />
-            <path d="m10 6 4-4" />
-            <path d="m14 6 4-4" />
-            <path d="m18 6 4-4" />
-            <polygon points="10 12 16 15 10 18" />
-          </svg></div>
-        <div class="reels">Reels</div>
-      </a>
-      <div class="n4" id="set"><svg width="45" height="45" viewBox="0 0 24 24" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
 
-          <path
-            d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          <path
-            d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.258 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.0113 9.77251C4.28059 9.5799 4.48572 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15Z"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <div class="n5">Setting</div>
+  <!-- Main Application Layout -->
+  <div class="app-layout">
+    
+    <!-- Left Navigation Rail -->
+    <aside class="n1">
+      <div class="n2">
+        
+        <!-- Current user quick badge -->
+        <a href="profile.html" class="n3 user-nav-link">
+          <div class="nav-avatar-wrap">
+            <img class="profile-pic" src="default.png" alt="Profile">
+          </div>
+          <div class="nav-user-info">
+            <span class="name" id="usernames">User</span>
+            <span class="user-sub">View profile</span>
+          </div>
+        </a>
+
+        <!-- Nav items -->
+        <nav class="nav-links-list">
+          <a href="net.html" class="nav-item active">
+            <div class="nav-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <polyline points="9 22 9 12 15 12 15 22" />
+              </svg>
+            </div>
+            <div class="home">Home</div>
+          </a>
+
+          <a href="reels.html" class="nav-item ree">
+            <div class="nav-icon reels1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="16" rx="2" />
+                <path d="m2 6 4-4" />
+                <path d="m6 6 4-4" />
+                <path d="m10 6 4-4" />
+                <path d="m14 6 4-4" />
+                <path d="m18 6 4-4" />
+                <polygon points="10 12 16 15 10 18" />
+              </svg>
+            </div>
+            <div class="reels">Reels</div>
+          </a>
+
+          <div class="nav-item n4" id="set">
+            <div class="nav-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3" />
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              </svg>
+            </div>
+            <div class="n5">Settings</div>
+          </div>
+        </nav>
+
+        <!-- Hidden Settings Menu Triggered by Gear -->
+        <div class="da1" id="da">
+          <div id="openPasswordModal" class="update sub-menu-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span class="nnnn">Change Password</span>
+          </div>
+          <div id="openDeleteModal" class="delete sub-menu-btn danger-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            <span class="nnnn">Delete Account</span>
+          </div>
+        </div>
+
+        <!-- Left footer mini info -->
+        <div class="sidebar-footer">
+          <p>&copy; 2026 NetWise</p>
+          <div class="sidebar-links">
+            <a href="#">Privacy</a> &bull; <a href="#">Terms</a>
+          </div>
+        </div>
+
       </div>
-      <button class="da1" id="da">
-        <div id="openPasswordModal" class="update"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M21.5 2v6h-6" />
-            <path d="M2.5 22v-6h6" />
-            <path d="M2 11.5a10 10 0 0 1 18.8-4.3" />
-            <path d="M22 12.5a10 10 0 0 1-18.8 4.2" />
-          </svg><span class="nnnn">Update Password</span></div>
-        <div id="openDeleteModal" class="delete"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round">
-            <path d="M3 6h18" />
-            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
-            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
-            <line x1="10" x2="10" y1="11" y2="17" />
-            <line x1="14" x2="14" y1="11" y2="17" />
-          </svg><span class="nnnn">Delete Account</span></div>
-      </button>
-    </div>
-    <div class="oi" id="otherUsersImagesContainer">
-    </div>
-  </nav>
-  <!--Change Password Modal -->
+    </aside>
+
+    <!-- Center Feed Stream -->
+    <main class="feed-main-col">
+      
+      <!-- Composer Quick Bar -->
+      <div class="composer-card">
+        <img class="profile-pic composer-avatar" src="default.png" alt="Avatar">
+        <a href="profile.html" class="composer-prompt">
+          <span>What's on your mind? Share a story or photo...</span>
+        </a>
+        <a href="profile.html" class="composer-media-btn" title="Add Media">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </a>
+      </div>
+
+      <!-- Feed Filter Chips -->
+      <div class="feed-filters">
+        <button class="filter-chip active">Latest Feed</button>
+        <button class="filter-chip" onclick="window.location.href='reels.html'">Watch Reels</button>
+      </div>
+
+      <!-- Feed Container for Other Users' Posts -->
+      <div class="oi" id="otherUsersImagesContainer">
+        <div class="feed-loading-skeleton">
+          <div class="skeleton-header"></div>
+          <div class="skeleton-body"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Right Sidebar: Widgets & Discovery -->
+    <aside class="right-sidebar">
+      <div class="widget-card">
+        <h3 class="widget-title">🔥 Discover Creators</h3>
+        <div class="widget-creators-list" id="suggestedCreators">
+          <div class="creator-mini-item">
+            <div class="creator-dot"></div>
+            <div>
+              <strong>NetWise Explore</strong>
+              <p>@explore &bull; Official</p>
+            </div>
+          </div>
+          <div class="creator-mini-item">
+            <div class="creator-dot"></div>
+            <div>
+              <strong>Design Daily</strong>
+              <p>@design &bull; Community</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget-card banner-widget">
+        <h4>⚡ Introducing Reels</h4>
+        <p>Experience seamless, full-screen vertical video content with audio controls.</p>
+        <a href="reels.html" class="widget-cta">Watch Now &rarr;</a>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Change Password Modal -->
   <div id="passwordModal" class="modal hidden">
     <div class="modal-content">
-      <span id="closeModal" class="close-update">&times;</span>
-      <h3>Change Password</h3>
+      <div class="modal-header">
+        <h3>Change Password</h3>
+        <span id="closeModal" class="close-update">&times;</span>
+      </div>
+      <p class="modal-sub">Update your account credentials securely.</p>
       <form id="changePasswordForm" class="f1">
-        <input type="password" id="oldPassword" placeholder="Enter old password" required><br>
-        <input type="password" id="newPassword" placeholder="Enter new password" required><br>
+        <div class="modal-input-wrap">
+          <input type="password" id="oldPassword" placeholder="Current Password" required>
+        </div>
+        <div class="modal-input-wrap">
+          <input type="password" id="newPassword" placeholder="New Password" required>
+        </div>
         <button type="submit" class="updates">Update Password</button>
       </form>
     </div>
   </div>
-  <!--for deleting an account-->
+
+  <!-- Delete Account Modal -->
   <div id="deleteModal" class="modal hidden">
-    <div class="modal-content">
-      <span id="closeDeleteModal" class="close-btn">&times;</span>
-      <h3>Are you sure you want to delete your account?</h3>
-      <p style="margin-bottom: 20px;">This action cannot be undone. All your data and photos will be permanently
-        deleted.</p>
-      <button id="confirmDelete" class="btn danger">Yes, Delete My Account</button>
-      <button id="cancelDelete" class="btn">Cancel</button>
+    <div class="modal-content danger-modal">
+      <div class="modal-header">
+        <h3>Delete Account</h3>
+        <span id="closeDeleteModal" class="close-btn">&times;</span>
+      </div>
+      <div class="modal-alert-icon">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      <p class="danger-title">Are you sure you want to delete your account?</p>
+      <p class="danger-desc">This action cannot be undone. All your posts, photos, reels, and data will be permanently wiped.</p>
+      <div class="modal-actions">
+        <button id="confirmDelete" class="btn danger">Yes, Delete Account</button>
+        <button id="cancelDelete" class="btn cancel-action">Cancel</button>
+      </div>
     </div>
   </div>
-  <script>
 
+  <script>
     const modal = document.getElementById("passwordModal");
     const openBtn = document.getElementById("openPasswordModal");
     const closeBtn = document.getElementById("closeModal");
@@ -201,14 +334,15 @@
 
     // Show/hide profile box
     pp.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent document click from firing
+      e.stopPropagation();
       b1.classList.toggle('hidden');
     });
 
     // Hide profile box when clicking anywhere else
-    document.addEventListener('click', () => {
-      b1.classList.remove('hidden');
-      b2.classList.remove('hidden');
+    document.addEventListener('click', (e) => {
+      if (!b1.contains(e.target) && e.target !== pp) {
+        b1.classList.remove('hidden');
+      }
     });
 
     // Prevent hiding when clicking inside the box
@@ -218,71 +352,77 @@
 
     // Toggle upload photo box
     uploadphoto.addEventListener('click', (e) => {
-      e.stopPropagation(); // Prevent closing immediately
+      e.stopPropagation();
       b2.classList.toggle('hidden');
     });
+
     const set = document.getElementById('set');
-    const da = document.getElementById('da')
+    const da = document.getElementById('da');
 
     set.addEventListener('click', () => {
       da.classList.toggle('hidden');
     });
 
-    //for get the user name who is just loged in
+    // Load logged-in user profile info
     async function loadUser() {
       const token = localStorage.getItem("token");
-      console.log("Token", token)
 
       if (!token) {
-        alert("Please log in first!");
         window.location.href = "/login.html";
         return;
       }
 
-      const res = await fetch("/api/auth/welcome", {
-        headers: { "Authorization": `Bearer ${token}` }
-      });
+      try {
+        const res = await fetch("/api/auth/welcome", {
+          headers: { "Authorization": `Bearer ${token}` }
+        });
 
-      const data = await res.json();
-      if (data.success) {
-        document.getElementById("username").innerText = data.user.username;
-        document.getElementById("usernames").innerText = data.user.username;
-      } else {
-        alert("Access denied! Please log in again.");
-        window.location.href = "/login.html";
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById("username").innerText = data.user.username;
+          document.getElementById("usernames").innerText = data.user.username;
+        } else {
+          localStorage.removeItem("token");
+          window.location.href = "/login.html";
+        }
+      } catch (err) {
+        console.error("Error loading user:", err);
       }
     }
     loadUser();
 
-    //for uploading the images
+    // Upload profile avatar
     document.getElementById("uploadForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const token = localStorage.getItem("token");
-      console.log("Token", token);
       const formData = new FormData(e.target);
 
-      const res = await fetch("/api/image/profile-upload", {
-        method: "POST",
-        headers: { "Authorization": `Bearer ${token}` },
-        body: formData,
-      });
+      try {
+        const res = await fetch("/api/image/profile-upload", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${token}` },
+          body: formData,
+        });
 
-      const data = await res.json();
-      if (res.ok) {
-        alert("Image uploaded successfully!");
-        loadUserImage();
-        console.log("Image URL:", data.url);
-      } else {
-        alert("Error uploading image: " + data.message);
+        const data = await res.json();
+        if (res.ok) {
+          alert("Profile picture updated successfully!");
+          loadUserImage();
+          b2.classList.remove('hidden');
+        } else {
+          alert("Error uploading image: " + (data.message || "Failed"));
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Upload failed. Please try again.");
       }
     });
 
-    //for fetching the images upload by by the loged in user
-    const token = localStorage.getItem("token");
-
+    // Load logged-in user avatar
     async function loadUserImage() {
       try {
         const token = localStorage.getItem("token");
+        if (!token) return;
 
         const res = await fetch("/api/image/myimages", {
           method: "GET",
@@ -290,145 +430,173 @@
         });
 
         const data = await res.json();
-
         const pics = document.querySelectorAll(".profile-pic");
 
-        // Get latest IMAGE only (ignore videos)
+        // Get latest image
         const lastImage = data.data
-          .filter(f => f.type === "image")
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+          ?.filter(f => f.type === "image")
+          ?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
 
-        if (lastImage) {
+        if (lastImage && lastImage.url) {
           pics.forEach(img => img.src = lastImage.url);
         } else {
           pics.forEach(img => img.src = "default.png");
         }
-
       } catch (error) {
         console.error("Error loading image:", error);
       }
     }
-
     loadUserImage();
 
-
-
-
+    // Logout
     document.getElementById("logout").addEventListener("click", () => {
       localStorage.removeItem("token");
       const msg = document.createElement("div");
-      msg.innerText = "You have been logout";
-      msg.style.position = "fixed";
-      msg.style.top = "20px";
-      msg.style.left = "50%";
-      msg.style.transform = "translateX(-50%)";
-      msg.style.background = "green";
-      msg.style.color = "white";
-      msg.style.padding = "10px 20px";
-      msg.style.borderRadius = "8px";
-      msg.style.zIndex = "9999";
-      msg.style.fontFamily = "sans-serif";
+      msg.className = "modern-toast toast-success show";
+      msg.innerHTML = `<span class="toast-dot"></span><span>Logged out successfully</span>`;
       document.body.appendChild(msg);
 
       setTimeout(() => {
         window.location.href = "login.html";
-      }, 1000);
+      }, 800);
     });
 
-    //for fetching other user images or video
-async function loadHomeFeed() {
-    const token = localStorage.getItem("token");
+    // Load Home Feed Posts
+    async function loadHomeFeed() {
+      const token = localStorage.getItem("token");
 
-    try {
+      try {
         const res = await fetch("/api/post/feed", {
-            headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: `Bearer ${token}` }
         });
 
         const data = await res.json();
-        console.log("Feed posts:", data);
-
         const container = document.getElementById("otherUsersImagesContainer");
         if (!container) return;
 
         container.innerHTML = "";
 
-        if (!data.success || data.data.length === 0) {
-            container.innerHTML = `
-    <p style="text-align:center;color:gray;font-size:18px;">
-      No posts yet
-    </p>`;
-            return;
+        if (!data.success || !data.data || data.data.length === 0) {
+          container.innerHTML = `
+            <div class="empty-feed-card">
+              <div class="empty-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div>
+              <h3>Your Feed is Fresh &amp; Quiet</h3>
+              <p>Be the first to share a post or follow creators to see what's trending!</p>
+              <a href="profile.html" class="empty-feed-btn">Create a Post</a>
+            </div>`;
+          return;
         }
 
-        data.data.forEach(post => {
-            const card = document.createElement("div");
-            card.className = "post-box";
+        data.data.forEach((post, index) => {
+          const card = document.createElement("article");
+          card.className = "post-card";
 
-            const media =
-                post.mediaType === "video"
-                    ? `<video src="${post.mediaUrl}" controls class="post-media" style="width:100%; display:block;"></video>`
-                    : `<img src="${post.mediaUrl}" class="post-media" style="width:100%; display:block;" />`;
+          const media = post.mediaType === "video"
+            ? `<video src="${post.mediaUrl}" controls class="post-media-video" playsinline></video>`
+            : `<img src="${post.mediaUrl}" class="post-media-img" loading="lazy" alt="Post content" />`;
 
-            card.innerHTML = `
-    <div class="post-card" style="background:white; margin-bottom:20px; border-radius:8px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;">
-      
-      <div class="post-header">
-        <img 
-          src="${post.uploadedBy?.profileImage || "default.png"}"
-          class="user-avatar"
-          data-userid="${post.uploadedBy?._id || ""}"
-        />
-        <span 
-          class="username-link"
-          style="font-weight:bold; cursor:pointer;"
-          data-userid="${post.uploadedBy?._id || ""}"
-        >
-          ${post.uploadedBy?.username || "Unknown User"}
-        </span>
-      </div>
+          const username = post.uploadedBy?.username || "Anonymous";
+          const avatarUrl = post.uploadedBy?.profileImage || "default.png";
+          const userId = post.uploadedBy?._id || "";
+          const postDate = post.createdAt ? new Date(post.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) : "Just now";
 
-      <div class="post-caption">
-          ${post.caption || ""}
-      </div>
+          card.innerHTML = `
+            <header class="post-header">
+              <div class="post-author-group">
+                <img 
+                  src="${avatarUrl}"
+                  class="user-avatar"
+                  data-userid="${userId}"
+                  alt="${username}"
+                />
+                <div class="author-details">
+                  <span 
+                    class="username-link"
+                    data-userid="${userId}"
+                  >
+                    ${username}
+                  </span>
+                  <span class="post-timestamp">${postDate}</span>
+                </div>
+              </div>
+              <button class="post-more-btn" title="Options">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+              </button>
+            </header>
 
-      <div class="post-body">
-        ${media}
-      </div>
+            ${post.caption ? `<div class="post-caption">${escapeHtml(post.caption)}</div>` : ""}
 
-    </div>
-  `;
+            <div class="post-media-wrapper">
+              ${media}
+            </div>
 
-            container.appendChild(card);
+            <footer class="post-action-bar">
+              <button class="action-item-btn like-btn" onclick="toggleLike(this)">
+                <svg class="action-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <span class="like-count">Like</span>
+              </button>
+              <button class="action-item-btn comment-btn" onclick="alert('Comments opening soon!')">
+                <svg class="action-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                <span>Comment</span>
+              </button>
+              <button class="action-item-btn share-btn" onclick="copyPostLink('${post.mediaUrl}')">
+                <svg class="action-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span>Share</span>
+              </button>
+            </footer>
+          `;
+
+          container.appendChild(card);
         });
 
-        // Redirect to user profile
+        // Redirect to user profile on click
         container.querySelectorAll(".username-link, .user-avatar").forEach(el => {
-            el.addEventListener("click", () => {
-                const userId = el.dataset.userid;
-                if (!userId) return;
-
-                localStorage.setItem("selectedUserId", userId);
-                window.location.href = "user-profile.html";
-            });
+          el.addEventListener("click", () => {
+            const userId = el.dataset.userid;
+            if (!userId) return;
+            localStorage.setItem("selectedUserId", userId);
+            window.location.href = "user-profile.html";
+          });
         });
 
-    } catch (err) {
+      } catch (err) {
         console.error("Feed load error:", err);
+      }
     }
-}
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+
+    function toggleLike(btn) {
+      btn.classList.toggle("liked");
+      const textSpan = btn.querySelector(".like-count");
+      if (btn.classList.contains("liked")) {
+        textSpan.textContent = "Liked (1)";
+      } else {
+        textSpan.textContent = "Like";
+      }
+    }
+
+    function copyPostLink(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert("Post link copied to clipboard!");
+      }).catch(() => {
+        alert("Link ready to share!");
+      });
+    }
 
     window.addEventListener("DOMContentLoaded", loadHomeFeed);
 
     function openUserProfile(userId) {
       if (!userId) return;
-
       localStorage.setItem("selectedUserId", userId);
       window.location.href = "user-profile.html";
     }
 
-
-
-    //for changing the password
+    // Change Password Handler
     document.getElementById("changePasswordForm").addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -437,7 +605,7 @@ async function loadHomeFeed() {
       const token = localStorage.getItem("token");
 
       if (!oldPassword || !newpassword) {
-        alert("Please fill in both fields!");
+        alert("Please fill in both password fields.");
         return;
       }
 
@@ -454,49 +622,30 @@ async function loadHomeFeed() {
         const data = await res.json();
 
         if (res.ok && data.success) {
-          const msg = document.createElement("div");
-          msg.innerText = data.message || "Password updated successfully!";
-          msg.style.position = "fixed";
-          msg.style.top = "20px";
-          msg.style.left = "50%";
-          msg.style.transform = "translateX(-50%)";
-          msg.style.background = "green";
-          msg.style.color = "white";
-          msg.style.padding = "10px 20px";
-          msg.style.borderRadius = "8px";
-          msg.style.zIndex = "9999";
-          msg.style.fontFamily = "sans-serif";
-          document.body.appendChild(msg);
-
-          setTimeout(() => {
-            window.location.href = "login.html";
-          }, 1000);
-          document.getElementById("changePasswordForm").reset();
-          modal.classList.add("hidden");
-          body.classList.remove("blur");
+          alert("Password updated successfully! Please sign in again.");
+          localStorage.removeItem("token");
+          window.location.href = "login.html";
         } else {
           alert(data.message || "Failed to update password.");
         }
       } catch (e) {
         console.error(e);
-        alert("Something went wrong while updating password.");
+        alert("Error while updating password.");
       }
     });
 
-    //for deleting an account
+    // Delete Account Handler
     const deleteModal = document.getElementById("deleteModal");
     const openDeleteModal = document.getElementById("openDeleteModal");
     const closeDeleteModal = document.getElementById("closeDeleteModal");
     const cancelDelete = document.getElementById("cancelDelete");
     const confirmDelete = document.getElementById("confirmDelete");
 
-    // Show modal
     openDeleteModal.addEventListener("click", () => {
       deleteModal.classList.remove("hidden");
       document.body.classList.add("blur");
     });
 
-    //Close modal (X or Cancel button)
     closeDeleteModal.addEventListener("click", () => {
       deleteModal.classList.add("hidden");
       document.body.classList.remove("blur");
@@ -507,15 +656,12 @@ async function loadHomeFeed() {
       document.body.classList.remove("blur");
     });
 
-    // Confirm Delete
     confirmDelete.addEventListener("click", async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        alert("Please login first.");
+        alert("Please sign in first.");
         return;
       }
-
-      if (!confirm("This will permanently delete your account. Continue?")) return;
 
       try {
         const res = await fetch("/api/auth/delete-account", {
@@ -528,148 +674,90 @@ async function loadHomeFeed() {
         const data = await res.json();
 
         if (res.ok && data.success) {
-          alert(data.message || "Account deleted successfully.");
+          alert("Account deleted permanently.");
           localStorage.removeItem("token");
-          window.location.href = "/signup.html"; // redirect to signup/login
+          window.location.href = "/signup.html";
         } else {
           alert(data.message || "Failed to delete account.");
         }
       } catch (err) {
         console.error("Error deleting account:", err);
-        alert("Something went wrong. Please try again later.");
+        alert("Something went wrong while deleting account.");
       }
     });
-    // for searching other user
+
+    // Search Users & Posts
     async function performSearch() {
-      const q = document.getElementById("searchBox").value;
+      const q = document.getElementById("searchBox").value.trim();
+      const resultsContainer = document.getElementById("searchResults");
 
       if (q.length < 1) {
-        document.getElementById("searchResults").innerHTML = "";
+        resultsContainer.innerHTML = "";
+        resultsContainer.style.display = "none";
         return;
       }
 
-      const res = await fetch(`/api/auth/search?q=${q}`);
-      const data = await res.json();
-
-      console.log("SEARCH RESULT:", data); // <-- IMPORTANT
-
-      if (!data.success) return;
-
-      let html = "";
-
-      // Show USERS
-      data.users.forEach(u => {
-        html += `
-            <div class="search-item" onclick="openUserProfile('${u._id}')">
-                <img src="${u.profileImage || u.profilePic || 'default.png'}">
-                <span>@${u.username}</span>
-            </div>
-        `;
-      });
-
-      // Show POSTS (images)
-      data.posts.forEach(p => {
-        html += `
-            <div class="search-item">
-                <img src="${p.mediaUrl}" class="small-post">
-                <span>${p.caption || ''}</span>
-            </div>
-        `;
-      });
-
-      document.getElementById("searchResults").innerHTML = html;
-    }
-    const fileInput = document.getElementById("fileInput");
-    const fileName = document.getElementById("fileName");
-    const previewBox = document.querySelector(".preview-box");
-    const imagePreview = document.getElementById("imagePreview");
-
-    function openFilePicker() {
-      fileInput.click();
-    }
-
-    fileInput.addEventListener("change", function () {
-      if (this.files.length > 0) {
-        const file = this.files[0];
-        fileName.textContent = file.name;
-
-        // Only preview images
-        if (file.type.startsWith("image/")) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-            imagePreview.src = e.target.result;
-            previewBox.style.display = "flex";
-          };
-          reader.readAsDataURL(file);
-        } else {
-          previewBox.style.display = "none";
-        }
-      } else {
-        fileName.textContent = "No file chosen";
-        previewBox.style.display = "none";
-      }
-    });
-
-    function cancelUpload() {
-      fileInput.value = "";              // clear file
-      fileName.textContent = "No file chosen";
-      imagePreview.src = "";
-      previewBox.style.display = "none";
-    }
-
-    async function loadUserPosts() {
       try {
-        const token = localStorage.getItem("token");
-
-        const res = await fetch("/api/post/my-posts", {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-
+        const res = await fetch(`/api/auth/search?q=${encodeURIComponent(q)}`);
         const data = await res.json();
 
-        const container = document.getElementById("imageContainer");
-        container.innerHTML = "";
-
-        if (!data.success || data.data.length === 0) {
-          container.innerHTML = "<p>No posts yet</p>";
+        if (!data.success) {
+          resultsContainer.style.display = "none";
           return;
         }
 
-        data.data.forEach(post => {
-          let el;
+        let html = "";
 
-          if (post.type === "video") {
-            el = document.createElement("video");
-            el.src = post.url;
-            el.controls = true;
-          } else {
-            el = document.createElement("img");
-            el.src = post.url;
-          }
+        if (data.users && data.users.length > 0) {
+          html += `<div class="search-category-title">Creators</div>`;
+          data.users.forEach(u => {
+            html += `
+              <div class="search-item" onclick="openUserProfile('${u._id}')">
+                <img src="${u.profileImage || u.profilePic || 'default.png'}" class="search-avatar">
+                <div class="search-text">
+                  <strong>${u.username}</strong>
+                  <span>@${u.username}</span>
+                </div>
+              </div>
+            `;
+          });
+        }
 
-          el.style.width = "220px";
-          el.style.height = "300px";
-          el.style.objectFit = "cover";
-          el.style.borderRadius = "10px";
-          el.style.margin = "8px";
+        if (data.posts && data.posts.length > 0) {
+          html += `<div class="search-category-title">Posts</div>`;
+          data.posts.forEach(p => {
+            html += `
+              <div class="search-item search-post-item">
+                <img src="${p.mediaUrl}" class="small-post">
+                <div class="search-text">
+                  <span>${p.caption || 'Photo Post'}</span>
+                </div>
+              </div>
+            `;
+          });
+        }
 
-          container.appendChild(el);
-        });
+        if (!html) {
+          html = `<div class="search-empty">No results found for "${q}"</div>`;
+        }
+
+        resultsContainer.innerHTML = html;
+        resultsContainer.style.display = "block";
 
       } catch (err) {
-        console.error("Post load error:", err);
+        console.error("Search error:", err);
       }
     }
 
-
-
-
-
-
-
+    // Close search dropdown on outside click
+    document.addEventListener("click", (e) => {
+      const searchContainer = document.querySelector(".search-container");
+      if (searchContainer && !searchContainer.contains(e.target)) {
+        const results = document.getElementById("searchResults");
+        if (results) results.style.display = "none";
+      }
+    });
   </script>
-
-
 </body>
 
 </html>

@@ -2,257 +2,455 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NetWise || Reels</title>
-    <link rel="website icon" type="png" href="letter-n_9871834.png">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NetWise | Reels</title>
+  <link rel="website icon" type="png" href="letter-n_9871834.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      --text-main: #f8fafc;
+      --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
 
-        .reels-section {
-            margin: 0;
-            padding: 0;
-            background-color: #f9fafb;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .reels-container {
-            height: 100dvh;
-            overflow-y: scroll;
-            scroll-snap-type: y mandatory;
-            padding: 0;
-            margin: 0;
-            scrollbar-width: none;
-        }
+    body {
+      background-color: #050811;
+      color: var(--text-main);
+      font-family: var(--font-family);
+      overflow: hidden;
+      height: 100dvh;
+    }
 
-        .reels-container::-webkit-scrollbar {
-            display: none;
-        }
+    /* Floating Navigation Header */
+    .reels-nav-header {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      pointer-events: none;
+    }
 
-        .reel-box {
-            position: relative;
-            scroll-snap-align: start;
-            height: 100dvh;
-            width: 100%;
-            overflow: hidden;
-            background: black;
-        }
+    .reels-nav-header * {
+      pointer-events: auto;
+    }
 
-        .reel-box video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .reels-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      color: white;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
 
-        .back {
-            padding: 15px;
-            height: 30px;
-            width: 100%;
-            border: none;
-            position: fixed;
-            z-index: 10;
-        }
+    .reels-back-btn:hover {
+      background: rgba(15, 23, 42, 0.95);
+      transform: translateY(-1px);
+    }
 
-        /* --- UPDATED OVERLAY STYLES --- */
-        .reel-overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 15px;
-            display: flex;
-            flex-direction: column;
-            /* Stack items vertically */
-            align-items: flex-start;
-            gap: 8px;
-            /* Space between user info and caption */
-            color: white;
-            background: rgba(0, 0, 0, 0.45);
-            /* Semi-transparent background */
-            padding: 10px 14px;
-            border-radius: 15px;
-            max-width: 75%;
-            /* Don't let text hit the icons on the right */
-            backdrop-filter: blur(2px);
-        }
+    .reels-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(16px);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
 
-        /* New container for the Image + Username row */
-        .reel-user-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .reels-brand span {
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-        .reel-dp {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid white;
-            object-fit: cover;
-            cursor: pointer;
-        }
+    /* Reels Stream Container */
+    .reels-section {
+      width: 100%;
+      height: 100dvh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
 
-        .reel-username {
-            font-weight: 600;
-            font-family: "Poppins", sans-serif;
-            font-size: 15px;
-            cursor: pointer;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-        }
+    .reels-container {
+      height: 100dvh;
+      width: 100%;
+      max-width: 480px;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scrollbar-width: none;
+    }
 
-        /* New Caption Style */
-        .reel-caption-text {
-            font-family: system-ui, -apple-system, sans-serif;
-            font-size: 14px;
-            line-height: 1.4;
-            color: #f0f0f0;
-            margin-left: 5px;
-            /* Slight offset to align with text above */
-            word-wrap: break-word;
-        }
+    .reels-container::-webkit-scrollbar {
+      display: none;
+    }
 
-        /* ... keep your reel-actions media queries ... */
-        .reel-actions {
-            position: absolute;
-            right: 15px;
-            bottom: 20%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 22px;
-        }
+    .reel-box {
+      position: relative;
+      scroll-snap-align: start;
+      height: 100dvh;
+      width: 100%;
+      overflow: hidden;
+      background: #090d16;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .reel-actions svg {
-            width: 28px;
-            height: 28px;
-            color: white;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
+    .reel-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+    }
 
-        @media (max-width: 768px) {
-            .reel-actions {
-                right: 10px;
-                gap: 18px;
-            }
+    /* Sound badge */
+    .sound-badge {
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.8);
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
 
-            .reel-overlay {
-                bottom: 60px;
-                /* Move up slightly on mobile so it doesn't hit bottom edge */
-            }
-        }
-    </style>
+    /* Reel Info Overlay */
+    .reel-overlay {
+      position: absolute;
+      bottom: 28px;
+      left: 16px;
+      right: 70px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      color: white;
+      z-index: 10;
+    }
+
+    .reel-user-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(12px);
+      padding: 6px 12px 6px 6px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .reel-dp {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid #6366f1;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .reel-username {
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    .reel-caption-text {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.9);
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      padding: 8px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      max-width: 100%;
+      word-wrap: break-word;
+    }
+
+    /* Floating Side Actions */
+    .reel-actions {
+      position: absolute;
+      right: 16px;
+      bottom: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      z-index: 10;
+    }
+
+    .reel-action-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .action-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .reel-action-btn:hover .action-circle {
+      background: rgba(99, 102, 241, 0.4);
+      transform: scale(1.1);
+    }
+
+    .reel-action-btn.liked .action-circle {
+      background: rgba(244, 63, 94, 0.3);
+      border-color: #f43f5e;
+    }
+
+    .reel-action-btn.liked svg {
+      fill: #f43f5e;
+      stroke: #f43f5e;
+    }
+
+    .action-count {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Empty state */
+    .empty-reels {
+      text-align: center;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .empty-reels-cta {
+      padding: 9px 20px;
+      border-radius: 9999px;
+      background: var(--primary-gradient);
+      color: white;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+  </style>
 </head>
 
 <body>
-    <header class="back">
-        <div
-            style="height: auto; width: 35px; border: 1px solid rgb(111, 199, 233); padding: 8px; background-color: rgb(111, 199, 233); border-radius: 5px;">
-            <a href="net.html" style="text-decoration: none; color: black;">Back</a>
-        </div>
-    </header>
-    <section class="reels-section">
-        <div id="videoContainer" class="reels-container"></div>
-    </section>
-    <script>
-        const token = localStorage.getItem("token");
+  <!-- Floating Top Navigation -->
+  <header class="reels-nav-header">
+    <a href="net.html" class="reels-back-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      <span>Feed</span>
+    </a>
+    <div class="reels-brand">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="16" rx="2"/><polygon points="10 12 16 15 10 18"/></svg>
+      <span>Reels</span>
+    </div>
+  </header>
 
-// ... Keep setupAutoPlay and setupSoundToggle functions exactly as they are ...
-function setupAutoPlay() {
-    const observer = new IntersectionObserver(entries => {
+  <section class="reels-section">
+    <div id="videoContainer" class="reels-container"></div>
+  </section>
+
+  <script>
+    const token = localStorage.getItem("token");
+
+    function setupAutoPlay() {
+      const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if(entry.isIntersecting) entry.target.play();
-            else entry.target.pause();
+          if (entry.isIntersecting) {
+            entry.target.play().catch(() => {});
+          } else {
+            entry.target.pause();
+          }
         });
-    }, { threshold: 0.75 });
-    document.querySelectorAll(".reel-box video").forEach(video => observer.observe(video));
-}
+      }, { threshold: 0.75 });
 
-function setupSoundToggle() {
-    document.querySelectorAll(".reel-box video").forEach(video => {
+      document.querySelectorAll(".reel-box video").forEach(video => observer.observe(video));
+    }
+
+    function setupSoundToggle() {
+      document.querySelectorAll(".reel-box").forEach(box => {
+        const video = box.querySelector("video");
+        const soundBadge = box.querySelector(".sound-badge");
+
         video.muted = true;
-        video.addEventListener("click", () => { video.muted = !video.muted; });
-    });
-}
 
-async function loadUserVideos() {
-    try {
+        video.addEventListener("click", () => {
+          video.muted = !video.muted;
+          if (soundBadge) {
+            soundBadge.innerText = video.muted ? "🔇 Muted" : "🔊 Sound On";
+            soundBadge.style.opacity = "1";
+            setTimeout(() => {
+              soundBadge.style.opacity = "0.7";
+            }, 1500);
+          }
+        });
+      });
+    }
+
+    async function loadUserVideos() {
+      try {
         const res = await fetch("/api/post/feed", {
-            headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         const data = await res.json();
         const container = document.getElementById("videoContainer");
         container.innerHTML = "";
 
-        if (!data.success || data.data.length === 0) {
-            container.innerHTML = "<p style='color:white; text-align:center; margin-top:50px;'>No reels yet.</p>";
-            return;
+        if (!data.success || !data.data || data.data.length === 0) {
+          container.innerHTML = `
+            <div class="empty-reels">
+              <h3>No reels yet</h3>
+              <p style="color:#94a3b8; font-size:0.9rem;">Be the first creator to upload a video reel!</p>
+              <a href="profile.html" class="empty-reels-cta">Upload Video</a>
+            </div>
+          `;
+          return;
         }
 
         const videos = data.data.filter(p => p.mediaType === "video");
 
         if (videos.length === 0) {
-            container.innerHTML = "<p style='color:white; text-align:center; margin-top:50px;'>No video reels available.</p>";
-            return;
+          container.innerHTML = `
+            <div class="empty-reels">
+              <h3>No video reels available</h3>
+              <p style="color:#94a3b8; font-size:0.9rem;">Check back later or upload your own video.</p>
+              <a href="profile.html" class="empty-reels-cta">Create Reel</a>
+            </div>
+          `;
+          return;
         }
 
         videos.forEach(post => {
-            const reelBox = document.createElement("div");
-            reelBox.className = "reel-box";
+          const reelBox = document.createElement("div");
+          reelBox.className = "reel-box";
 
-            // UPDATED HTML STRUCTURE BELOW
-            reelBox.innerHTML = `
-                <video src="${post.mediaUrl}" loop muted playsinline webkit-playsinline></video>
-                
-                <div class="reel-overlay">
-                    <div class="reel-user-row">
-                        <img 
-                            src="${post.uploadedBy?.profileImage || 'default.png'}"
-                            class="reel-dp clickable"
-                            data-userid="${post.uploadedBy?._id}"
-                        />
-                        <span 
-                            class="reel-username clickable"
-                            data-userid="${post.uploadedBy?._id}">
-                            @${post.uploadedBy?.username || "unknown"}
-                        </span>
-                    </div>
-                    
-                    <div class="reel-caption-text">
-                        ${post.caption || ""}
-                    </div>
+          reelBox.innerHTML = `
+            <video src="${post.mediaUrl}" loop muted playsinline webkit-playsinline></video>
+            
+            <div class="sound-badge">🔇 Tap video for sound</div>
+
+            <div class="reel-overlay">
+              <div class="reel-user-row">
+                <img 
+                  src="${post.uploadedBy?.profileImage || 'default.png'}"
+                  class="reel-dp clickable"
+                  data-userid="${post.uploadedBy?._id || ''}"
+                  alt="Creator avatar"
+                />
+                <span 
+                  class="reel-username clickable"
+                  data-userid="${post.uploadedBy?._id || ''}">
+                  @${post.uploadedBy?.username || "creator"}
+                </span>
+              </div>
+              
+              ${post.caption ? `<div class="reel-caption-text">${escapeHtml(post.caption)}</div>` : ""}
+            </div>
+
+            <!-- Floating Side Actions -->
+            <div class="reel-actions">
+              <button class="reel-action-btn" onclick="this.classList.toggle('liked')">
+                <div class="action-circle">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                 </div>
-            `;
-            container.appendChild(reelBox);
+                <span class="action-count">Like</span>
+              </button>
+
+              <button class="reel-action-btn" onclick="alert('Comments on reels coming soon!')">
+                <div class="action-circle">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                </div>
+                <span class="action-count">Chat</span>
+              </button>
+
+              <button class="reel-action-btn" onclick="copyReelLink('${post.mediaUrl}')">
+                <div class="action-circle">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                </div>
+                <span class="action-count">Share</span>
+              </button>
+            </div>
+          `;
+          container.appendChild(reelBox);
         });
 
         setupSoundToggle();
         setupAutoPlay();
 
-    } catch (err) {
+      } catch (err) {
         console.error("Error loading reels:", err);
+      }
     }
-}
 
-window.addEventListener("DOMContentLoaded", loadUserVideos);
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
 
-// ... Keep your click listener for profile navigation ...
-document.getElementById("videoContainer").addEventListener("click", (e) => {
-    const target = e.target.closest(".clickable");
-    if (!target) return;
-    const userId = target.dataset.userid;
-    if (!userId) return;
-    localStorage.setItem("selectedUserId", userId);
-    window.location.href = "user-profile.html";
-});
+    function copyReelLink(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        alert("Reel link copied!");
+      }).catch(() => {
+        alert("Reel link ready!");
+      });
+    }
 
+    window.addEventListener("DOMContentLoaded", loadUserVideos);
 
-
-    </script>
+    document.getElementById("videoContainer").addEventListener("click", (e) => {
+      const target = e.target.closest(".clickable");
+      if (!target) return;
+      const userId = target.dataset.userid;
+      if (!userId) return;
+      localStorage.setItem("selectedUserId", userId);
+      window.location.href = "user-profile.html";
+    });
+  </script>
 </body>
 
 </html>
