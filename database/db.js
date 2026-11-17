@@ -1,15 +1,10 @@
-const mongoose = require('mongoose');
+const { PrismaClient } = require('@prisma/client');
 
+const prisma = new PrismaClient();
 const connectDB = async () => {
-    try{
-        if (!process.env.MONGO_URI) {
-            throw new Error("MONGO_URI is missing from .env");
-        }
-        await mongoose.connect(process.env.MONGO_URI);
-        console.log('Mongodb connected successfully');
-    }catch(error){
-        console.error("Mongoose connection failed:", error.message);
-        process.exit(1);
-    }
+  if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is missing from .env');
+  await prisma.$connect();
+  console.log('PostgreSQL connected successfully through Prisma');
 };
-module.exports = connectDB;
+
+module.exports = { prisma, connectDB };

@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id           String   @id @db.Text
+  username     String   @unique
+  email        String   @unique
+  password     String
+  profileImage String   @default("default.png") @map("profile_image")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  posts        Post[]
+  images       Image[]
+
+  @@map("users")
+}
+
+model Post {
+  id         String   @id @db.Text
+  mediaUrl   String   @map("media_url")
+  publicId   String?  @map("public_id")
+  mediaType  String?  @map("media_type")
+  caption    String   @default("")
+  uploadedBy String?  @map("uploaded_by") @db.Text
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  user       User?    @relation(fields: [uploadedBy], references: [id], onDelete: Cascade)
+
+  @@index([uploadedBy, createdAt(sort: Desc)])
+  @@map("posts")
+}
+
+model Image {
+  id         String   @id @db.Text
+  url        String
+  type       String   @default("image")
+  publicId   String   @map("public_id")
+  usage      String   @default("post")
+  uploadedBy String?  @map("uploaded_by") @db.Text
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  user       User?    @relation(fields: [uploadedBy], references: [id], onDelete: Cascade)
+
+  @@index([uploadedBy, createdAt(sort: Desc)])
+  @@map("images")
+}
